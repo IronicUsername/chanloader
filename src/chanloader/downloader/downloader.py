@@ -83,7 +83,7 @@ def _download(lock: threading.Lock, entry: Tuple[Any, str, str]) -> None:
                             f.write(data)
                         print(f'Done with {file_name}.')
         else:
-            print(f'File) {file_name} already exists! skipping..')
+            print(f'File {file_name} already exists! skipping..')
 
 
 # download_thread('https://boards.4chan.org/gif/thread/16897929', '/Users/deniz/Desktop/gondola')

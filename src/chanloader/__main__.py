@@ -1,3 +1,3 @@
-from ._comands import download
+from ._comands import selecta
 
-download()
+selecta()
