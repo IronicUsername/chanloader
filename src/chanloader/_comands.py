@@ -11,7 +11,7 @@ cli = click.Group()
 
 @click.command()
 @click.argument('thread_url', required=True)
-@click.option('-o', '--output_path', type=click.Path(exists=True), required=False)
+@click.option('-o', '--output_path', type=click.Path(exists=True))
 def download(thread_url: str, output_path: Optional[str]):
     """Download caller.
 

@@ -23,8 +23,13 @@ def download_thread(url: str, out_path: Optional[str] = '') -> None:
         The path to the output. If not given than it will create a path in the project root.
     """
     time_start = time()
-    board = urlparse(url).path.split('/')[1]
-    thread_id = urlparse(url).path.split('/')[3]
+
+    if 'boards.4chan.org' in url:
+        board = urlparse(url).path.split('/')[1]
+        thread_id = urlparse(url).path.split('/')[3]
+    else:
+        print('No valid URL!')
+        return
 
     if not out_path:
         out_path = output_path(board, thread_id)

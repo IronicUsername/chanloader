@@ -1,12 +1,17 @@
 # chanloader
 
-Simple CLI tool to download all media from a 4chan thread.
+Simple CLI tool to download (and convert) all media from a 4chan thread.
 
 ## usage
 
 ### download
 ```sh
-python -m chanloader <URL-TO-THREAD> -o <OPTIONAL-OUTPUT-PATH>
+chanloader download -t <URL to thread> -o <optional output path>
+```
+
+### convert
+```sh
+chanloader convert WIP
 ```
 
 ### development
