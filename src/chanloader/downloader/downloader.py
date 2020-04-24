@@ -1,5 +1,6 @@
 from multiprocessing.pool import ThreadPool
 import threading
+import os
 from typing import Any, Optional, Tuple
 from time import time
 from urllib.parse import urlparse
@@ -33,8 +34,10 @@ def download_thread(url: str, out_path: Optional[str] = '') -> None:
 
     if not out_path:
         out_path = output_path(board, thread_id)
-    elif not out_path.endswith('/'):
-        out_path = out_path + '/'
+    out_path = out_path + '/' + board + '/thread_' + thread_id + '/'
+
+    if not os.path.isdir(out_path):
+        os.makedirs(out_path)
 
     session = requests.Session()
     session.headers.update(HEADERS)
@@ -57,6 +60,7 @@ def download_thread(url: str, out_path: Optional[str] = '') -> None:
 
     print(f'Elapsed Time: {time() - time_start}s')
     print(f'The thread was saved under: {out_path}')
+    print(f'Downloaded {len([f for f in os.listdir(out_path) if os.path.isfile(os.path.join(out_path, f))])} files.')
 
 
 def _download(lock: threading.Lock, entry: Tuple[Any, str, str]) -> None:

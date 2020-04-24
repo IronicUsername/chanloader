@@ -42,7 +42,7 @@ def output_path(board_name: str, post_id: str) -> str:
     path: str
         The output path to the file.
     """
-    path = base_path() + '/' + board_name + '/' + post_id + '/'
+    path = base_path() + '/' + board_name + '/thread_' + post_id + '/'
     if not os.path.exists(path):
         os.makedirs(path)
     return path

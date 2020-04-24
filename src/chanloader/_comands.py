@@ -1,4 +1,3 @@
-from os import path
 from typing import Optional
 
 import click
@@ -27,9 +26,6 @@ def download(thread_url: str, output_path: Optional[str]):
     click.UsageError
         Throws when the given path does not exist or is invalid.
     """
-    if output_path is not None and not path.isdir(output_path):
-        raise click.UsageError(message='`output_path` has to exist and be a directory')
-
     download_thread(thread_url, output_path)
 
 
