@@ -43,11 +43,12 @@ def convert(in_path, out_path):
 
 @click.command()
 @click.argument('endpoint', required=True, type=click.STRING)
-@click.option('-t', '--thread_url', type=click.STRING, required=False)
-@click.option('-o', '--output_path', type=click.STRING, required=False)
+@click.option('-t', '--thread_url', type=click.STRING, required=False, help='A valid URL to the desired thread.')
+@click.option('-o', '--output_path', type=click.STRING, required=False, help='Optional output path.')
 @click.pass_context
 def selecta(ctx, endpoint: str, thread_url: Optional[str], output_path: Optional[str] = ''):
     """Choose between `download` and `convert` function.
+
     Give optional arguments for each case.
     Booyakasha! Checkit!
     https://www.youtube.com/watch?v=b00lc92lExw.
