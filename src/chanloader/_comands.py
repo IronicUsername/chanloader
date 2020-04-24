@@ -3,6 +3,7 @@ from typing import Optional
 
 import click
 
+from chanloader.convert import converter_thread
 from chanloader.downloader import download_thread
 
 cli = click.Group()
@@ -33,7 +34,10 @@ def download(thread_url: str, output_path: Optional[str]):
 
 
 @click.command()
-def convert():
+@click.argument('in_path', required=True)
+@click.option('-o', '--out_path', type=click.Path(exists=True), required=False)
+def convert(in_path, out_path):
+    converter_thread(in_path, out_path)
     pass
 
 
@@ -65,13 +69,16 @@ def selecta(ctx, endpoint: str, thread_url: Optional[str], output_path: Optional
     click.UsageError
         If the given endpoint does not exist.
     """
-    endpoints = {'download': download, 'convert': convert}
+    endpoints = {
+        'download': download,
+        'convert': convert,
+    }
 
     if endpoint in endpoints:
         if endpoint == 'download':
             ctx.invoke(download, thread_url=thread_url, output_path=output_path)
         elif endpoint == 'convert':
-            ctx.invoke(convert)
+            ctx.invoke(convert, in_path='', out_path='')
     else:
         raise click.UsageError(message='Function not aviable!\n\n'
                                        'Aviable functions:\n'
