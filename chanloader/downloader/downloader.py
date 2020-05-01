@@ -50,7 +50,7 @@ def download_thread(url: str, out_path: Optional[str] = '') -> None:
                 dload_info = session, dload_url, out_path
                 urls.append(dload_info)
 
-    pool = ThreadPool(8)
+    pool = ThreadPool(12)
     lock = threading.Lock()
 
     for url in urls:

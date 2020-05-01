@@ -28,3 +28,5 @@ myenv.sh
 .myenv
 
 # Other Stuff
+build
+dist

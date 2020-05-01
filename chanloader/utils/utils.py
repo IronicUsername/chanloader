@@ -3,7 +3,7 @@ import os
 
 def base_path() -> str:
     """Path to the project."""
-    return os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../..'))
+    return os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 
 
 def file_exists(file_name: str, out_path: str) -> bool:
@@ -27,11 +27,13 @@ def file_exists(file_name: str, out_path: str) -> bool:
     return False
 
 
-def output_path(board_name: str, post_id: str) -> str:
+def output_path(path: str, board_name: str, post_id: str) -> str:
     """Generate output path for files.
 
     Parameters
     ----------
+    path: str
+        Base output path.
     board_name: str
         The name of the game ni🅱🅱a.
     post_id: str
@@ -42,7 +44,15 @@ def output_path(board_name: str, post_id: str) -> str:
     path: str
         The output path to the file.
     """
-    path = base_path() + '/' + board_name + '/thread_' + post_id + '/'
-    if not os.path.exists(path):
-        os.makedirs(path)
-    return path
+    out_path = path + '/' + board_name + '/thread_' + post_id + '/'
+    if not os.path.exists(out_path):
+        os.makedirs(out_path)
+    return out_path
+
+
+def current_path():
+    return os.getcwd()
+
+
+
+print(current_path())
